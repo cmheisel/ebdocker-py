@@ -23,13 +23,15 @@ RUN mkdir -p /var/app/configs
 ADD ./configs /var/app/configs
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
+RUN cp /var/app/configs/supervisord.conf /etc/supervisor/
 RUN ln -s /var/app/configs/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
 
 
 # Copy the rest of the code later to take advantage of Dockers cache
 ADD . /var/app
+#RUN rm /var/app/.env
 
 
 EXPOSE 8001
-CMD ["supervisord", "-n"]
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
