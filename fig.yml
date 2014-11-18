@@ -1,7 +1,8 @@
 web:
   build: .
-  command: python /var/app/sample/manage.py runserver 0.0.0.0:8000
+  command: supervisord -n
   volumes:
     - .:/var/app
   ports:
     - "8000:8000"
+    - "8001:80"

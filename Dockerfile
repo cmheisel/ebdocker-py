@@ -19,14 +19,17 @@ WORKDIR /var/app
 ADD requirements.txt /var/app/
 RUN pip install -r requirements.txt
 
+RUN mkdir -p /var/app/configs
+ADD ./configs /var/app/configs
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN rm /etc/nginx/sites-enabled/default
+RUN ln -s /var/app/configs/nginx-app.conf /etc/nginx/sites-enabled/
+RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
+
+
 # Copy the rest of the code later to take advantage of Dockers cache
 ADD . /var/app
 
-#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-#RUN rm /etc/nginx/sites-enabled/default
-#RUN ln -s /var/app/configs/nginx-app.conf /etc/nginx/sites-enabled/
-#RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
 
 EXPOSE 8000
-#CMD ["supervisord", "-n"]
-CMD ["python", "/var/app/sample/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["supervisord", "-n"]
