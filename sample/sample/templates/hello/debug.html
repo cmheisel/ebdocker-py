@@ -1,0 +1,14 @@
+{% extends "hello/base.html" %}
+{% load config %}
+
+{% block title %}Debug{% endblock title %}
+
+{% block content %}
+<h1>Debug info</h1>
+<ul>
+    {% for key, value in META.items %}
+    <li>{{ key }}: {{ value }}</li>
+    {% endfor %}
+    <li>HTTP_HOST: {{ HTTP_HOST }}
+</ul>
+{% endblock content %}

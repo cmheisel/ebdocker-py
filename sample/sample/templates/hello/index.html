@@ -1,0 +1,10 @@
+{% extends "hello/base.html" %}
+{% load config %}
+
+{% block title %}Greeting{% endblock title %}
+
+{% block content %}
+{% get_setting "GREETING" as greeting %}
+{% get_setting "GREETEE" as gretee %}
+<h1>{{ greeting }}, {{ gretee }}</h1>
+{% endblock content %}

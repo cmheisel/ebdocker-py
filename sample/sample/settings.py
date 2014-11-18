@@ -7,11 +7,20 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import environ
+root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(
+    DEBUG=(bool, False),
+    TEMPLATE_DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, []),
+    LOG_FILE=(str),
+    LOG_LEVEL=(str, "WARNING"),
+    GREETING=(str, "Hello"),
+    GREETEE=(str, "World"),
+)  # set default values and casting
+environ.Env.read_env(os.path.join(root(), '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -24,18 +33,17 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    os.path.join(root(), 'sample', 'sample', 'templates'),
+)
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'hello',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,10 +65,7 @@ WSGI_APPLICATION = 'sample.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+
 }
 
 # Internationalization
@@ -81,3 +86,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+GREETING = env('GREETING')
+GREETEE = env('GREETEE')
