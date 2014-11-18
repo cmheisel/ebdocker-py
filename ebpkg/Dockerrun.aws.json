@@ -1,0 +1,15 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Authentication": {
+       "Bucket": "cmh-docker-creds",
+        "Key": "mydockercfg"
+    },
+    "Image": {
+        "Name": "quay.io/cmheisel/ebdocker-py:latest",
+        "Update": "true"
+    },
+    "Ports": [{
+        "ContainerPort": "80"
+    }],
+    "Logging": "/var/log"
+}
