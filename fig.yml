@@ -1,6 +1,6 @@
 web:
   build: .
-  command: supervisord -n
+  command: supervisord -n -c /etc/supervisor/supervisord.conf
   volumes:
     - .:/var/app
   ports:
