@@ -9,7 +9,7 @@
         "Update": "true"
     },
     "Ports": [{
-        "ContainerPort": "80"
+        "ContainerPort": "8001"
     }],
     "Logging": "/var/log"
 }

@@ -4,4 +4,4 @@ web:
   volumes:
     - .:/var/app
   ports:
-    - "8001:80"
+    - "8001:8001"
