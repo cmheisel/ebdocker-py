@@ -31,5 +31,5 @@ RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
 ADD . /var/app
 
 
-EXPOSE 8000
+EXPOSE 80
 CMD ["supervisord", "-n"]
