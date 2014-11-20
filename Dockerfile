@@ -20,11 +20,11 @@ ADD requirements.txt /var/app/
 RUN pip install -r requirements.txt
 
 RUN mkdir -p /var/app/configs
-RUN mkdir -p /var/log/nginx
 ADD ./configs /var/app/configs
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
 RUN cp /var/app/configs/supervisord.conf /etc/supervisor/
+RUN cp /var/app/configs/nginx.conf /etc/nginx/
 RUN ln -s /var/app/configs/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
 
