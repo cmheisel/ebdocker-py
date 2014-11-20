@@ -5,7 +5,7 @@
         "Key": "mydockercfg"
     },
     "Image": {
-        "Name": "quay.io/cmheisel/ebdocker-py:latest",
+        "Name": "quay.io/cmheisel/ebdocker-py:r5",
         "Update": "true"
     },
     "Ports": [{
