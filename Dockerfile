@@ -20,6 +20,7 @@ ADD requirements.txt /var/app/
 RUN pip install -r requirements.txt
 
 RUN mkdir -p /var/app/configs
+RUN mkdir -p /var/log/nginx
 ADD ./configs /var/app/configs
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
