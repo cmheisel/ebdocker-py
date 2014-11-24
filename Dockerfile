@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
 	python-setuptools \
 	nginx \
 	supervisor \
-	python-software-properties
+	python-software-properties \
+    curl \
+    wget
 
 RUN easy_install pip
 
@@ -31,7 +33,6 @@ RUN ln -s /var/app/configs/supervisor-app.conf /etc/supervisor/conf.d/
 
 # Copy the rest of the code later to take advantage of Dockers cache
 ADD . /var/app
-#RUN rm /var/app/.env
 
 
 EXPOSE 8001
