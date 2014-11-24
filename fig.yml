@@ -1,7 +1,7 @@
 web:
   build: .
-  command: supervisord -n
+  command: supervisord -n -c /etc/supervisor/supervisord.conf
   volumes:
     - .:/var/app
   ports:
-    - "8001:80"
+    - "13251:8001"

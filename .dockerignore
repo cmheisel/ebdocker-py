@@ -1,0 +1,7 @@
+.git
+*.zip
+.env
+*.log
+*.tar
+fig.yml
+ebpkg
